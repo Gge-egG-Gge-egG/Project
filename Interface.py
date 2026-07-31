@@ -11,12 +11,13 @@ st.set_page_config(
 )
 np.set_printoptions(suppress=True)
 st.title("Let's check if your brain is good")
-st.write("Upload brain mri scan pic from above to here\nWe'll check for you")
+st.write("Upload brain mri scan pic from above to here" \
+"We'll check it for you")
 # Load the model
-model1=tf.keras.models.load_model("model1.keras",
+model1=tf.keras.models.load_model("model/model1.keras",
                                   custom_objects={"preprocess_input":tf.keras.applications.mobilenet_v2.preprocess_input}
                                   ,safe_mode=False,compile=False)
-model2=tf.keras.models.load_model("model2.keras",
+model2=tf.keras.models.load_model("model2/model2.keras",
                                   custom_objects={"preprocess_input":tf.keras.applications.mobilenet_v2.preprocess_input}
                                   ,safe_mode=False,compile=False)
 if model1 and model2:
@@ -65,13 +66,13 @@ if upload:
         predictions=model2.predict(data)
         index1=np.argmax(predictions)
         class_namee=class_name[index1]
-        confidence_scoring=predictions[0][index1]
+        confidence_scoring=predictions[1][index1]
         st.write("Class:", class_namee[2:])
         st.write ("Confidence Score:", confidence_scoring*100,"%")
         st.write("Your brain is experiencing problems, it's the best to go and see a doctor right now")
     else:
         st.write("Your brain looks good, but double check with a professional to see")
-    st.write("Caution: This model is still in training, it makes mistakes, do not 100% trust its results. Always double check with a prefessional one.")    
+    st.write("Caution: This model is still in training, it makes mistakes, do not 100% trust its results. Always check with a prefessional one.")    
 
 else:
     st.write("No image uploaded")
