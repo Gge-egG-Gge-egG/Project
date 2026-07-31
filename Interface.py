@@ -11,7 +11,7 @@ st.set_page_config(
 )
 np.set_printoptions(suppress=True)
 st.title("Let's check if your brain is good")
-st.write("Upload brain mri scan pic from above to here")
+st.write("Upload brain mri scan picture")
 st.write("We'll check it for you")
 # Load the model
 model1=tf.keras.models.load_model("model/model1.keras",
