@@ -11,8 +11,8 @@ st.set_page_config(
 )
 np.set_printoptions(suppress=True)
 st.title("Let's check if your brain is good")
-st.write("Upload brain mri scan pic from above to here" \
-"We'll check it for you")
+st.write("Upload brain mri scan pic from above to here")
+st.write("We'll check it for you")
 # Load the model
 model1=tf.keras.models.load_model("model/model1.keras",
                                   custom_objects={"preprocess_input":tf.keras.applications.mobilenet_v2.preprocess_input}
@@ -66,7 +66,7 @@ if upload:
         predictions=model2.predict(data)
         index1=np.argmax(predictions)
         class_namee=class_name[index1]
-        confidence_scoring=predictions[1][index1]
+        confidence_scoring=predictions[0][index1]
         st.write("Class:", class_namee[2:])
         st.write ("Confidence Score:", confidence_scoring*100,"%")
         st.write("Your brain is experiencing problems, it's the best to go and see a doctor right now")
